@@ -1,19 +1,18 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import Icon from './icon'
 
 const MemoListItem = (): JSX.Element => {
     return (
         <View>
-            
             <View style={styles.memoListItem}>
                 <View>
-                <Text style={styles.memoListItemTitle}>買い物リスト</Text>
-                <Text style={styles.memoListItemDate}>2020年12月24日</Text>
+                    <Text style={styles.memoListItemTitle}>買い物リスト</Text>
+                    <Text style={styles.memoListItemDate}>2020年12月24日</Text>
                 </View>
-                <View>
-                <Text>X</Text>
-                </View>
+                <TouchableOpacity>
+                    <Icon name='delete' size={40} color='#B0B0B0' />
+                </TouchableOpacity>
             </View>
-            
         </View>
     )
 }
