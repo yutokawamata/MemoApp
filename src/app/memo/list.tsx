@@ -1,21 +1,33 @@
+//import { Feather } from '@expo/vector-icons'
 import { View, StyleSheet } from 'react-native'
-import Header from '../../components/Header' // ヘッダー
 import MemoListItem from '../../components/MemoListItem' // メモリスト
 import CircleButton from '../../components/CircleButton' // ボタン
-//import { Feather } from '@expo/vector-icons'
 import Icon from '../../components/icon'
+import { router, useNavigation } from 'expo-router' //特定画面のみログアウトボタン表示
+import { useEffect } from 'react'
+import LogOutButton from '../../components/LogOutButton'
+
+const handlePress = (): void => {
+    router.push('/memo/create')
+}
 
 const Index = (): JSX.Element => {
+  const navigation = useNavigation() //特定画面のみログアウトボタン表示
+{/*リスト画面のみにログアウトボタン表示 */}
+{/*一度だけ読み込まれるフック useEffect　を使用する。*/}
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => { return <LogOutButton /> }
+    })
+  },[])
   return (
     <View style={styles.container}>
-{/* Header*/}
-      <Header />
 {/* MemoList */}
       <MemoListItem />
       <MemoListItem />
       <MemoListItem />
 {/* Button */}
-      <CircleButton>
+      <CircleButton onPress={handlePress}>
         {/*<Feather name="plus" size={40} />*/}
         <Icon name='plus' size={40} color='white' />
       </CircleButton>
