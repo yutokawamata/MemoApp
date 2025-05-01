@@ -1,12 +1,18 @@
-import { Redirect } from 'expo-router' // リダイレクト
+import { Redirect, router } from 'expo-router' // リダイレクト
+import { onAuthStateChanged } from 'firebase/auth' // 認証状態を監視
+import { auth } from '../config' // 認証をインポート
+import { useEffect } from 'react' // 副作用を管理
 
 const Index = (): JSX.Element => {
-    //return <Redirect href="/memo/list" />
-    //return <Redirect href="/memo/detail" />
-    //return <Redirect href="/memo/edit" />
-    //return <Redirect href="/memo/create" />
-    return <Redirect href="/auth/log_in" />
-    //return <Redirect href="/auth/sign_up" />
+    useEffect(() => { // 認証状態を監視 一度だけ実行されるフック
+        onAuthStateChanged(auth, (user) => {
+          if (user !== null) {
+            router.replace('/memo/list')
+          }
+        })
+    }, [])
+
+    return <Redirect href="/auth/log_up" />
 }
 
 export default Index

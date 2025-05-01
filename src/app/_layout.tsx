@@ -1,6 +1,5 @@
 //import { Slot } from 'expo-router'
 import { Stack } from 'expo-router'
-//import { Link } from 'expo-router'
 
 const Layout = (): JSX.Element => {
   //return <Slot /> // ログイン画面をそのまま表示
